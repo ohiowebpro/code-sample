@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 import logo from "../logo.svg";
 import mhl from "../mental-health-yes.png";
+import wcwv from "../Wood-County-WV.png";
 const code2 = `
 
 const slideMods   = document.querySelectorAll('.module-slider');
@@ -108,15 +109,17 @@ slideMods.forEach((slider) => {
 `;
 const code1 =  `
 <article @php(post_class('directory-single-wrap'))>
-
     <div class="row">
         <div class="col-lg-7 col-xl-8">
             <div class="directory-details p-5 module">
+            
                 {!! edit_swg_module('Business', get_the_id(), 'top right') !!}
                 @include('sections.icons.tribal4')
 
                 <h1 class="mt-2 mb-0">{!! $title !!}</h1>
+                
                 @if ($catname)
+                
                     <p class="mt-1 mb-4">
                         @foreach ($catname as $thisCat)
                             @if ($thisCat->parent != 0)
@@ -124,18 +127,22 @@ const code1 =  `
                             @endif
                         @endforeach
                     </p>
+                    
                 @endif
 
                 {!!  get_field('main_content')  !!}
 
                 @if (get_field('website')) <p>@include('sections.icons.arrow')<a href="{{ get_field('website') }}" class="" target="_blank">{{ rtrim(str_ireplace(array('http://','https://'), '',get_field('website')),'/') }}</a></p> @endif
+                
                 @if(get_field('phone_number')) <p>@include('sections.icons.phone')<a href="tel:{{ get_field('phone_number') }}" class="">{{ get_field('phone_number') }}</a></p> @endif
+                
                 <p>@include('sections.icons.marker')<a href="https://www.google.com/maps/search/?api=1&query={{ urlencode(get_field('street').' '.get_field('city').' '.get_field('state'). ' '.get_field('zip')) }}" target="_blank">{{ get_field('street') }}, {{ get_field('city') }}, {{ get_field('state') }} {{ get_field('zip') }}</a></p>
+                
                 @if (!get_field('hide_email'))
                     <p>@include('sections.icons.email')<a href="mailto:{{ get_field('email') }}" class="">{{ get_field('email') }}</a></p>
                 @endif
+                
             </div>
-
 
         </div>
         <div class="col-lg-5 col-xl-4 mta-slider mta-slider-wide" >
@@ -194,14 +201,84 @@ const code1 =  `
 
 
 `;
+const code3 = `
+add_action('after_setup_theme', function () {
+    register_block_type( dirname(__FILE__) . '/blocks/tabs/block.json' );
+}, 20);
 
+`;
+const code4 = `
+{
+    "name": "acf/tabs",
+    "title": "Theme Tabs",
+    "description": "Tabs that open to show content.",
+    "category": "theme",
+    "icon": "index-card",
+    "keywords": ["tabs", "content", "mta"],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block.php"
+    },
+    "supports": {
+        "align": [ ]
+
+    },
+    "editorStyle": "file:block-admin.css"
+}
+
+`;
+const code5 = `
+<!-- tabs block -->
+<?php
+$className = '';
+if( !empty($block['className']) ) {
+    $className = ' ' . $block['className'];
+}
+
+$tabs = get_field('tabs');
+
+?>
+
+<div class="mta-tabs <?php echo $className;?>" id="<?php echo $block['id'];?>">
+    <ul class="nav nav-tabs" id="mta-tabs-1" role="tablist">
+
+        <?php
+        
+        $active = ' show active';
+        $cnt = 1;
+        $tab_content = '';
+        foreach ($tabs as $tab) {
+
+        ?>
+
+            <li class="nav-item" role="presentation">
+                <button class="nav-link<?php echo $active;?>" id="mta-tabs-<?php echo $block['id'];?>-<?php echo $cnt;?>" data-bs-toggle="tab" data-bs-target="#mta-tabs-<?php echo $block['id'];?>-content-<?php echo $cnt;?>" type="button" role="tab" aria-controls="mta-tabs-<?php echo $block['id'];?>-<?php echo $cnt;?>" aria-selected="true"><?php echo $tab['tab_title'];?></button>
+            </li>
+
+        <?php
+        
+            $tab_content .= '<div class="tab-pane fade'.$active.'" id="mta-tabs-'.$block['id'].'-content-'.$cnt.'" role="tabpanel" aria-labelledby="mta-tabs-'.$block['id'].'-'.$cnt.'" tabindex="0">'.$tab['tab_content'].'</div>';
+            $cnt ++;
+            $active = '';
+        }
+
+        ?>
+
+    </ul>
+    <div class="tab-content" id="mta-tabs-<?php echo $block['id'];?>-content">
+        <?php echo $tab_content;?>
+    </div>
+</div>
+
+`;
 export default function CarouselComponent() {
     return (
         <div className="carousel-wrapper">
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} showArrows={true}>
                 <div>
                     <h2>Hello, my name is Eric Griffiths</h2>
-                    <p>This is a collection of code samples in a slider for the the 10up Front End Web Developer position. The samples here are my own code/designs that I have collected spesifically for this job listing as requested. To fullfill the React requirement, this portfolio is a simple example created with create-react-app. Thank you for the opportunity to showcase my talents! </p>
+                    <p>This is a collection of code samples in a slider for the the 10up Front End Web Developer position. The samples here are my own code/designs that I have collected spesifically for this job listing as requested. To fullfill the React requirement, this portfolio is a simple example created with create-react-app.</p>
+                    <p>Thank you for the opportunity to showcase my talents! </p>
                     <img src={logo} className="App-logo" alt="logo" />
                 </div>
                 <div>
@@ -225,11 +302,24 @@ export default function CarouselComponent() {
                 </div>
                 <div>
                     <h2>Gutenberg / WordPress block editor</h2>
-
+                    <p>For most custom WordPress blocks, I use the ACF blocks instead of @wordpress/create-block mostly because I use ACF in about every project, and with this method it keeps you in PHP/HTML. It is nice to keep everything in one project, and I do not have to worry about rebuilding with React. Here is a block that I created for <a href="https://mariettaohio.org/plan/#itineraries" target="_blank">mariettaohio.org</a></p>
+                    <code>Init the block JSON file</code>
+                    <pre>
+                        {code3}
+                    </pre>
+                    <code>block.json file</code>
+                    <pre>
+                        {code4}
+                    </pre>
+                    <code>block.php render file</code>
+                    <pre>
+                        {code5}
+                    </pre>
                 </div>
                 <div>
                     <h2>Accessibility</h2>
-
+                    <p>Most websites that I do, we test for a accessibility score and try to keep it within reason depending on budget, time and client needs. Some projects need more attention and are expected to fully pass. Last year we built <a href="https://woodcountywv.com" target="_blank">woodcountywv.com</a> to be WCAG 2 AA compliant. Since the client maintains the site, we talked them into also adding the Userway Accessibility tool to help show effort to maintain the compliance. Well, I see now it is a good thing we did, the client added the gray banner at the top with white text, which is not passing contrast now!</p>
+                    <img src={wcwv} className="wcwv" alt="Wood County WV screenshot" /><br /><a href="https://woodcountywv.com" target="_blank">woodcountywv.com</a>
                 </div>
             </Carousel>
         </div>
