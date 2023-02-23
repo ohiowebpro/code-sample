@@ -1,10 +1,22 @@
+body {
+    background-color: #0f1d34;
+    color: white;
+    font-size: calc(10px + 2vmin);
+
+}
+a {
+    color: #90a1dc;
+}
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 12vmin;
   pointer-events: none;
+  margin:.5em;
+  opacity: .1;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,18 +26,50 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
+
+
+
+}
+.carousel li.slide {
+    max-width: 900px;
+    text-align: left;
+    font-size: calc(1px + 1.5vmin);
+    line-height: 1.6;
+
+}
+.carousel.carousel-slider .control-arrow {
+    top:auto;
+    bottom:7px;
+}
+.carousel .control-arrow::before, .carousel.carousel-slider .control-arrow::before {
+    content:'PREV';
+    border:none
+}
+.carousel .control-next::before, .carousel.carousel-slider .control-next::before {
+    content:'NEXT';
+}
+pre {
+    background-color: black;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    overflow: auto;
+    font-size: 13px;
+    padding:4px;
+    max-height:600px;
+    line-height: 1;
+}
 .App-link {
   color: #61dafb;
+}
+.carousel-wrapper {
+    margin:.4em 10vw;
+    border: 2px solid rgba(255,255,255,.2);
+    text-align: left;
+    background-color: #08101e;
+}
+.slide > div {
+    padding: 0 5vw;
+    margin-bottom:3em;
 }
 
 @keyframes App-logo-spin {
