@@ -1,88 +1,151 @@
+
+/* CSS Code by Eric Griffiths */
+
+
+
+/* Basic elements */
+
 body {
     background-color: #0f1d34;
     color: white;
     font-size: calc(10px + 2vmin);
-
 }
+
 a {
     color: #90a1dc;
 }
+
+img {
+    max-width:100%;
+    height:auto;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 12vmin;
-  pointer-events: none;
-  margin:.5em;
-  opacity: .1;
-
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
 
 
 
+/* carousel Customs */
 
-}
 .carousel li.slide {
     max-width: 900px;
     text-align: left;
     font-size: calc(6px + 1.5vmin);
     line-height: 1.6;
-
 }
+
 .carousel.carousel-slider .control-arrow {
     top:auto;
     bottom:7px;
 }
+
 .carousel .control-arrow::before, .carousel.carousel-slider .control-arrow::before {
     content:'PREV';
     border:none
 }
+
 .carousel .control-next::before, .carousel.carousel-slider .control-next::before {
     content:'NEXT';
 }
+
+.carousel .slide article {
+    display: flex;
+    margin-bottom:2em;
+    align-items: start;
+    justify-content: center;
+}
+
+.carousel .slide article div,.carousel .slide article img {
+    flex-basis: 50%;
+}
+
+.carousel .slide article div {
+    padding:0 2.4em;
+    font-size: calc(1.4px + 2vmin);
+}
+
+.carousel .slide article img {
+    display:block;
+    margin:auto;
+}
+
+
+
+
+/* Code Areas */
+
 pre {
     background-color: black;
     font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
     overflow: auto;
     font-size: 13px;
     padding:4px;
-    max-height:600px;
+    max-height: 1000px;
     line-height: 1;
 }
+
 code {
     font-size: 1em;
     color: #90a1dc;
+
 }
-.App-link {
-  color: #61dafb;
-}
+
 .carousel-wrapper {
     margin:.4em 10vw;
     border: 2px solid rgba(255,255,255,.2);
     text-align: left;
     background-color: #08101e;
 }
+
 .slide > div {
     padding: 0 5vw;
     margin-bottom:3em;
 }
+
+
+
+
+/* Various Areas */
+
+.App-link {
+  color: #61dafb;
+}
+
+.end h2, .end h3 {
+    font-size: calc(50px + 2vmin);
+    text-align: center;
+    opacity: .5;
+}
+
 footer {
     margin: 0 10vw 3em 10vw;
     font-size: calc(1px + 2vmin);
     display: flex;
     justify-content: space-between;
 }
+
 footer > div:last-child {
     text-align: right;
+}
+
+
+
+
+/*React Logo*/
+
+.App-logo {
+    height: 14vmin;
+    pointer-events: none;
+    margin:.5em;
+    opacity: .1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 @keyframes App-logo-spin {

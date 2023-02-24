@@ -1,9 +1,16 @@
+/* Component Code by Eric Griffiths */
+
 import React from "react";
 import { Carousel } from 'react-responsive-carousel';
 
+//Images
 import logo from "../logo.svg";
 import mhl from "../mental-health-yes.png";
 import wcwv from "../Wood-County-WV.png";
+import ohiose from "../ohiose.jpg";
+import kcd from "../kcd.jpg";
+
+//code constants
 const code2 = `
 
 const slideMods   = document.querySelectorAll('.module-slider');
@@ -277,32 +284,51 @@ export default function CarouselComponent() {
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} showArrows={true}>
                 <div>
                     <h2>Hello, my name is Eric Griffiths</h2>
-                    <p>This is a collection of code samples in a slider for the the 10up Front End Web Developer position. The samples here are my own code/designs that I have collected spesifically for this job listing as requested. To fullfill the React requirement, this portfolio is a simple example created with create-react-app.</p>
+                    <p>This is a collection of code samples in a slider for the 10up Front End Web Developer position. The samples here are my own code/designs that I have collected specifically for this job listing as requested. To fulfill the React requirement, this portfolio is a simple example created with create-react-app.</p>
                     <p>Thank you for the opportunity to showcase my talents! </p>
+                    <h3>To start, here are two projects that I am proud of:</h3>
+                    <article>
+                        <img src={ohiose} className="proud" alt="OhioSE"/>
+                        <div>
+                            <h4>OhioSE</h4>
+                            <p>Built a few years ago, this is a WordPress custom theme with lots of custom post types and blocks. Clients have added a good bit of plugins over the years, but this site keeps going strong.</p>
+                            <p><a href="https://ohiose.com" target="_blank">ohiose.com</a></p>
+                        </div>
+
+                    </article>
+                    <article>
+                        <img src={kcd} className="proud" alt="KCD"/>
+                        <div>
+                             <h4>Kitchen Cabinet Distributors</h4>
+                             <p>This is an airy concept with lots of white space. From there, I built a custom WordPress theme with custom post types, a few custom blocks, and a splash of animation.</p>
+                             <p><a href="https://kcdus.com" target="_blank">kcdus.com</a></p>
+                        </div>
+
+                    </article>
                     <img src={logo} className="App-logo" alt="logo" />
                 </div>
                 <div>
                     <h2>Semantic HTML, WordPress/PHP</h2>
-                    <p>For this code sample, I selected a custom post type called directory I created for the <a href="https://mariettaohio.org/directory/marietta-brewing-company/" target="_blank">mariettaohio.org</a> project. This is a blade template file named <code>directory-single.blade.php</code> that gets a single directory listing and shows the optional custom fields with text, and the optional images in a carousel.</p>
+                    <p>For this code sample, I selected a custom post type called <em>directory</em> that I created for the <a href="https://mariettaohio.org/directory/marietta-brewing-company/" target="_blank">mariettaohio.org</a> project. This is a blade template file named <code>directory-single.blade.php</code> that retrieves a single directory listing and shows the optional custom fields with text, and the optional images in a carousel.</p>
                     <pre>
                         {code1}
                     </pre>
                 </div>
                 <div>
                     <h2>Design & QA</h2>
-                    <p>As for design samples, I do not take the lead on designing sites as much as I use to. The most recent site that I designed was <a href="https://mentalhealthyes.org/" target="_blank">mentalhealthyes.org</a>. This was for a marketing campaign that we did for a local levy renewal. It is a simple 1 page wordpress site, designed with the Divi builder. We has a intern that designened the white icons, so those are not mine.</p>
+                    <p>I do not take the lead on designing sites much anymore. The most recent site that I designed was <a href="https://mentalhealthyes.org/" target="_blank">mentalhealthyes.org</a>. This was for a marketing campaign that we did for a local levy renewal. It is a simple 1-page WordPress site, designed with the Divi builder using the client-supplied logos and images.</p>
                     <img src={mhl} className="mhl" alt="Mental Health Yes screenshot" /><br /><a href="https://mentalhealthyes.org/" target="_blank">mentalhealthyes.org</a>
                 </div>
                 <div>
                     <h2>Vanilla JavaScript</h2>
-                    <p>For this sample, I would like to show you a custom JavaScript carousel I built for WordPress on <a href="https://greaterparkersburg.com/" target="_blank">greaterparkersburg.com</a>. These are the multiple carousels you see on the home page. The carousels auto rotate and update the number on the slide. Also the slide number can be selected. The code is modular and works with multiple instances on a page. This was a fun project and was proud of for dropping JQuery. Have not used JQuery since.</p>
+                    <p>For this sample, I would like to show you a custom JavaScript carousel I built for WordPress on <a href="https://greaterparkersburg.com/" target="_blank">greaterparkersburg.com</a>. These are the multiple carousels you see on the home page. The carousels auto-rotate and update the number on the slide. Also, the slide number can be selected. The code is modular and works with multiple instances on a page. This was a fun project that made me proud to drop JQuery. Have not used JQuery since.</p>
                     <pre>
                         {code2}
                     </pre>
                 </div>
                 <div>
                     <h2>Gutenberg / WordPress block editor</h2>
-                    <p>For most custom WordPress blocks, I use the ACF blocks instead of @wordpress/create-block mostly because I use ACF in about every project, and with this method it keeps you in PHP/HTML. It is nice to keep everything in one project, and I do not have to worry about rebuilding with React. Here is a block that I created for <a href="https://mariettaohio.org/plan/#itineraries" target="_blank">mariettaohio.org</a></p>
+                    <p>For most custom WordPress blocks, I use the ACF blocks instead of @wordpress/create-block mostly because I use ACF in about every project. By using this method, your code is in PHP/HTML with the rest of the template files. It is nice to keep everything in one project, and I do not have to worry about rebuilding with React. Here is a block that I created for <a href="https://mariettaohio.org/plan/#itineraries" target="_blank">mariettaohio.org</a>.</p>
                     <code>Init the block JSON file</code>
                     <pre>
                         {code3}
@@ -318,8 +344,12 @@ export default function CarouselComponent() {
                 </div>
                 <div>
                     <h2>Accessibility</h2>
-                    <p>Most websites that I do, we test for a accessibility score and try to keep it within reason depending on budget, time and client needs. Some projects need more attention and are expected to fully pass. Last year we built <a href="https://woodcountywv.com" target="_blank">woodcountywv.com</a> to be WCAG 2 AA compliant. Since the client maintains the site, we talked them into also adding the Userway Accessibility tool to help show effort to maintain the compliance. Well, I see now it is a good thing we did, the client added the gray banner at the top with white text, which is not passing contrast now!</p>
+                    <p>For most websites that I do, we test for an accessibility score and try to keep it within reason depending on budget, time, and client needs. Some projects need more attention and are expected to fully pass. Last year we built <a href="https://woodcountywv.com" target="_blank">woodcountywv.com</a> to be WCAG 2 AA compliant. Since the client maintains the site, we talked them into also adding the Userway Accessibility tool to help show effort to maintain compliance. Well, I see now it is a good thing we did, the client added the gray banner at the top with white text, which is not passing for contrast!</p>
                     <img src={wcwv} className="wcwv" alt="Wood County WV screenshot" /><br /><a href="https://woodcountywv.com" target="_blank">woodcountywv.com</a>
+                </div>
+                <div class="end">
+                    <h2>The End</h2>
+                    <h3>Thank you!</h3>
                 </div>
             </Carousel>
         </div>
